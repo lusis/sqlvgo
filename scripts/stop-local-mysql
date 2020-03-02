@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu
+ROOT=$(git rev-parse --show-toplevel)
+
+
+MYSQL_NAME="sqlvgo"
+
+
+docker stop ${MYSQL_NAME}

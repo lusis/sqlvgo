@@ -1,0 +1,23 @@
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/doug-martin/goqu/v9 v9.6.0
+github.com/doug-martin/goqu/v9
+github.com/doug-martin/goqu/v9/dialect/mysql
+github.com/doug-martin/goqu/v9/exec
+github.com/doug-martin/goqu/v9/exp
+github.com/doug-martin/goqu/v9/internal/errors
+github.com/doug-martin/goqu/v9/internal/sb
+github.com/doug-martin/goqu/v9/internal/tag
+github.com/doug-martin/goqu/v9/internal/util
+github.com/doug-martin/goqu/v9/sqlgen
+# github.com/go-sql-driver/mysql v1.5.0
+github.com/go-sql-driver/mysql
+# github.com/google/uuid v1.1.1
+github.com/google/uuid
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.5.1
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/require
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2

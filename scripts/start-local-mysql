@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -eu
+ROOT=$(git rev-parse --show-toplevel)
+
+DBHOST="127.0.0.1"
+OS=$(uname)
+case $OS in
+    'Darwin')
+        DBHOST="docker.for.mac.localhost"
+esac
+
+MYSQL_NAME="sqlvgo"
+
+docker run \
+    -d --rm \
+    -e MYSQL_ENABLE_NETWORKING=1 \
+    -e MYSQL_ROOT_PASSWORD=password \
+    -e MYSQL_PASSWORD=password \
+    -e MYSQL_USER=user \
+    -e MYSQL_DATABASE=testing \
+    -e MYSQL_PORT=3306 \
+    -e MYSQL_ROOT_HOST="%" \
+    -p 3306:3306 \
+    --name=${MYSQL_NAME} \
+    -t mysql:5.7
+
+sleep 15
+
+CREATE_COMMAND=$(cat <<END
+docker run \
+    --rm \
+    -e DB_NAME=testing \
+    -e DB_HOST=${DBHOST} \
+    -e DB_PORT=3306 \
+    -e SQL_USERNAME=user \
+    -e SQL_PASSWORD=password \
+    -v ${ROOT}/sql:/sql \
+    -v ${ROOT}/scripts:/scripts \
+    -t mysql:5.7 \
+    /scripts/migrate.sh
+END
+)
+n=0
+until [ $n -ge 5 ]
+do
+      ${CREATE_COMMAND} && break
+      n=$((n+1))
+      sleep 3
+done
